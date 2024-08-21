@@ -1,0 +1,35 @@
+<main class="main">
+    <section class="container">
+        <h1>Resgistre um novo produto</h1>
+        <section class="form">
+            <form class="forms" #formulario="ngForm" (ngSubmit)="atualizarItem(formulario)">
+                
+                    <label>Nome do Produto</label>
+                    <input type="text" name="produto" [(ngModel)]="item.produto">
+
+                    <label>Preço</label>
+                    <input type="text" name="preco" [(ngModel)]="item.preco">
+
+                    <label>Descrição</label>
+                    <input type="text" name="descricao" [(ngModel)]="item.descricao">
+
+            </form>
+            
+            <section class="button">
+                <section class="upload">
+                    <label for="foto"></label>
+                    <input type="file" class="upload-photo" (change)="uploadFile($event)">
+                </section>
+                <button (click)="atualizarItem(formulario)">Salvar</button>
+            </section>
+        </section>
+        
+        <br>
+
+        <section class="checked">
+            <button (click)="apagarItem()" > Apagar </button>
+        </section>
+
+
+    </section>
+</main>

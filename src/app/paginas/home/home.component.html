@@ -1,3 +1,12 @@
-vc está logado na pagina inicial
-<br>
-<button (click)="enviarPedido()" target="_blank">Enviar pedido</button>
+<section class="container">
+    <main class="main">
+        <article id="card" class="table-container mat-elevation-z8" tabindex="0" *ngFor="let item of itens">
+                <section class="cardItens">
+                    <img [src]=" item.foto || 'src/assets/img/img.jpg' ">
+                    <h2 class="titulo"> Produto: {{item.produto}}</h2>
+                    <h2 class="titulo">R$ {{item.preco}}</h2>
+                    <h3 class="subtitulo">Descrição:{{item.descricao}}</h3>
+                </section>
+        </article>
+    </main>
+</section>

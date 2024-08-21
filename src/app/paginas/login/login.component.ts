@@ -29,16 +29,16 @@ export class LoginComponent {
 
   }
 
-  public logarEmailSenha(): void {
-    if(this.formulario.valid) {
-      const user: User = this.formulario.value
-      this.authService.autenticarEmailSenha(user).subscribe(credencial => {
-      console.log("Autenticado com Email e Senha!")
-      this.router.navigate(["home"])
-      })
-    } else {
-      console.log("Dados inválidos")
+    public logarEmailSenha(): void {
+      if(this.formulario.valid) {
+        const user: User = this.formulario.value
+        this.authService.autenticarEmailSenha(user).subscribe(credencial => {
+        console.log("Autenticado com Email e Senha!")
+        this.router.navigate(["dashboard"])
+        })
+      } else {
+        console.log("Dados inválidos")
+      }
     }
-  }
 
 }

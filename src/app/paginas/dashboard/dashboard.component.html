@@ -1,1 +1,47 @@
-<p>dashboard works!</p>
+<main class="main">
+    <section class="container">
+        <h1>Resgistre um novo produto</h1>
+        <section class="form">
+            <form class="forms" #formulario="ngForm" (ngSubmit)="salvarItem(formulario)">
+                
+                    <label>Nome do Produto</label>
+                    <input type="text" name="produto" [(ngModel)]="item.produto">
+
+                    <label>Preço</label>
+                    <input type="number" name="preco" [(ngModel)]="item.preco">
+
+                    <label>Descrição</label>
+                    <input type="text" name="descricao" [(ngModel)]="item.descricao">
+
+            </form>
+            
+            <section class="button">
+                <section class="upload">
+                    <label for="foto"></label>
+                    <input type="file" class="upload-photo" (change)="uploadFile($event)">
+                </section>
+                <button mat-raised-button (click)="salvarItem(formulario)">Salvar</button>
+            </section>
+        </section><br>
+
+        <section class="painelDash">
+            <main>
+                <article id="card" class="table-container mat-elevation-z8" tabindex="0" *ngFor="let item of itens">
+                    <a [routerLink]="['/editar', item.id]">    
+                    <section class="cardItens">
+                            <img [src]=" item.foto || 'src/assets/img/img.jpg' ">
+                            <h2 class="titulo"> Produto: {{item.produto}}</h2>
+                            <h2 class="titulo">R$ {{item.preco}}</h2>
+                            <h3 class="subtitulo">Descrição:{{item.descricao}}</h3>
+                            
+                        </section>
+                    </a>
+                </article>
+            </main>
+            
+        </section>
+
+    <h1 (click)="deslogar()">Sair</h1>
+
+    </section>
+</main>

@@ -1,40 +1,54 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../login/auth.service';
+import { CommonModule } from '@angular/common';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Item } from '../item';
+
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
 
   constructor(
-    private router: Router,
-    private authService: AuthService
+    private firestore: AngularFirestore
   ) { }
-  public sair(): void {
-    this.router.navigate(["login"])
-    this.authService.sair().subscribe(retorno => {
-      console.log("Até logo!");
-    })
+
+  itens: Item[] = []
+  
+  ngOnInit(): void {
+    this.initializeTable()
   }
 
-    public pedido = ["lanche"];
-    public valor = "";
-    public endereco = "";
-    public telefone = "5512983172236";
-   
 
-  enviarPedido() {
-    const mensagem = ` Olá! Gostaria de fazer o pedide de um ${this.pedido} no valor de ${this.valor} para o endereço ${this.endereco}.`;
-    
-    const mensagemCodificada = encodeURIComponent(mensagem);
-    return`https://wa.me/${this.telefone}?text=${mensagemCodificada}` 
-    
+
+  public initializeTable(): void {
+    this.firestore.collection<Item>('itens').valueChanges().subscribe((retorno) => {
+      this.itens = retorno;
+    });
   }
+
+
+
+
+
+
+
+
+
+
+
+  // enviarPedido() {
+  //   const mensagem = ` Olá! Gostaria de fazer o pedide de um ${this.pedido} no valor de ${this.valor} para o endereço ${this.endereco}.`;
+    
+  //   const mensagemCodificada = encodeURIComponent(mensagem);
+  //   return`https://wa.me/${this.telefone}?text=${mensagemCodificada}` 
+    
+  // }
 
 
 }
